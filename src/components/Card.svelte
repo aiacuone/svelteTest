@@ -4,6 +4,7 @@
 	export let person;
 	export let onUpdatePerson;
 	export let allGroups;
+	export let onAddGroup;
 
 	console.log('person', ' L29 @ card.svelte');
 
@@ -21,6 +22,7 @@
 			key: 'groups',
 			value: [...person.groups, `group${person.groups.length}`]
 		});
+		onAddGroup(`group${allGroups.length}`);
 	};
 </script>
 
