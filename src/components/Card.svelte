@@ -1,6 +1,9 @@
 <script>
+	import Button from './Button.svelte';
+
 	export let person;
 	export let onUpdatePerson;
+	export let allGroups;
 
 	console.log('person', ' L29 @ card.svelte');
 
@@ -11,14 +14,30 @@
 			value: !person.isFavourite
 		});
 	};
+
+	const onGroups = () => {
+		onUpdatePerson({
+			uuid: person.uuid,
+			key: 'groups',
+			value: [...person.groups, `group${person.groups.length}`]
+		});
+	};
 </script>
 
 <div class="flex flex-col gap-3 border-2 border-black p-3">
 	<h1>{person.name}</h1>
 	<p>{person.isFavourite}</p>
-	<button
-		class={`bg-gray-${person.isFavourite ? '300' : '200'} p-2 rounded-md`}
-		on:click={onFavourite}>favourite</button
-	>
+	<Button isSelected={person.isFavourite} onClick={onFavourite}>Favourite</Button>
 	<img src={person.image} alt="test" />
+	<div>
+		<h1>Groups</h1>
+		<Button onClick={onGroups} isFullWidth>Add Group</Button>
+		<ul>
+			{#each allGroups as group}
+				<li>
+					{group}
+				</li>
+			{/each}
+		</ul>
+	</div>
 </div>
