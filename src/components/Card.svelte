@@ -1,27 +1,20 @@
 <script>
 	export let person;
-	export let onFavourite;
-
-	const { isFavourite, uuid, name, image } = person;
-	let favouriteButtonColor = 'red';
-
-	const onFavouriteLocal = () => {
-		favouriteButtonColor = isFavourite ? 'green' : 'blue';
-		onFavourite({ id: uuid, boolean: !isFavourite });
+	export let onUpdatePerson;
+	console.log('person', ' L29 @ card.svelte');
+	const onFavourite = () => {
+		onUpdatePerson({
+			uuid: person.uuid,
+			key: 'isFavourite',
+			value: !person.isFavourite
+		});
 	};
-
-	const mapArray = { name, uuid, isFavourite };
 </script>
 
-<div class="border-2 border-black p-4">
-	<ul>
-		{#each Object.entries(mapArray) as [key, value]}
-			<li>{key}: {value}</li>
-		{/each}
-	</ul>
-	<img src={image} alt="test" />
-
-	<button on:click={onFavouriteLocal} class={`w-full py-2 bg-${favouriteButtonColor}-500`}
-		>Favourite</button
-	>
+<!-- <div class="border-2 border-rose-500"> -->
+<div class="flex flex-col gap-3 border-2 border-black p-3">
+	<h1>{person.name}</h1>
+	<p>{person.isFavourite}</p>
+	<button class="bg-gray-200 p-2 rounded-md" on:click={onFavourite}>favourite</button>
+	<img src={person.image} alt="test" />
 </div>
