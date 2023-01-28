@@ -4,7 +4,10 @@
 
 	let people = peopleInitial;
 
+	console.log('people', ' L6 @ Counter.svelte');
+
 	$: people, console.log('people', ' L9 @ Counter.svelte');
+
 	const onUpdatePerson = ({ uuid, key, value }) => {
 		const personIndex = people.findIndex((person) => person.uuid === uuid);
 		people[personIndex][key] = value;
