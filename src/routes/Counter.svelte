@@ -16,7 +16,7 @@
 
 <div class="flex flex-col gap-3">
 	<div class="grid  grid-cols-5 gap-3">
-		{#each people as person (person.name)}
+		{#each people as person (person.uuid)}
 			<Card {person} {onUpdatePerson} />
 		{/each}
 	</div>
